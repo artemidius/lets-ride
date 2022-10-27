@@ -1,0 +1,21 @@
+image: alvrme/alpine-android:android-33
+
+stages:
+  - check
+  - build
+
+check:
+  stage: check
+  script:
+    - ./gradlew lint
+    - ./gradlew test
+
+assembleDebug:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+      - app/build/outputs/apk
+    expire_in: 1 day
+

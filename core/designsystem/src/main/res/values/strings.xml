@@ -1,0 +1,5 @@
+<resources>
+    <string name="title_activity_fake">FakeActivity</string>
+    <string name="app_name">Let\'s Ride</string>
+    <string name="title_activity_mock">MockActivity</string>
+</resources>
