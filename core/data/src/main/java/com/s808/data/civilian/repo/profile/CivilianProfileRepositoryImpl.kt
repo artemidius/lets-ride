@@ -1,19 +1,19 @@
-package com.s808.data.civilian.repo
+package com.s808.data.civilian.repo.profile
 
 import com.s808.common.result.OperationResult
 import com.s808.data.civilian.model.CivilianProfile
 import com.s808.data.civilian.model.toEntity
 import com.s808.data.civilian.model.toProfile
 import com.s808.data.database.dao.CivilianDao
-import com.s808.data.user.model.Else
+import com.s808.data.user.UserGender
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
-class CivilianRepositoryImpl @Inject constructor(
+class CivilianProfileRepositoryImpl @Inject constructor(
     private val civilianDao: CivilianDao
-) : CivilianRepository {
+) : CivilianProfileRepository {
 
     private val initialCivilianProfile by lazy {
         CivilianProfile(
@@ -21,7 +21,7 @@ class CivilianRepositoryImpl @Inject constructor(
             icon = null,
             hasHelmet = false,
             pickMeUpWhereIam = false,
-            gender = Else()
+            gender = UserGender.Else
         )
     }
 

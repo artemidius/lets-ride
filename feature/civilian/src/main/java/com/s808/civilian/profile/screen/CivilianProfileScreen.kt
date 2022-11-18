@@ -2,10 +2,7 @@ package com.s808.civilian.profile.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,12 +14,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.s808.civilian.profile.ui.state.CivilianProfileViewState
+import com.s808.civilian.profile.state.CivilianProfileViewState
 import com.s808.civilian.profile.vm.CivilianProfileViewModel
 import com.s808.letsride.core.designsystem.R
 
 @Composable
-fun CivilianProfileScreen(viewModel: CivilianProfileViewModel = hiltViewModel()) {
+fun CivilianProfileScreen (
+    onClickSubmit: () -> Unit = {},
+    viewModel: CivilianProfileViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
@@ -53,6 +53,16 @@ fun CivilianProfileScreen(viewModel: CivilianProfileViewModel = hiltViewModel())
             }
             CivilianProfileViewState.Error -> {}
             CivilianProfileViewState.Loading -> {}
+        }
+        Button(
+            onClick = onClickSubmit,
+            modifier = Modifier
+                .height(64.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+
+        ) {
+            Text(text = "SUBMIT", style = MaterialTheme.typography.h4)
         }
     }
 }

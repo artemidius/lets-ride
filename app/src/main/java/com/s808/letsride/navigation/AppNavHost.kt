@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.s808.civilian.profile.screen.CivilianProfileScreen
+import com.s808.civilian.rides.screen.CivilianRidesScreen
 import com.s808.start.ui.RoleChoiceScreen
 
 @Composable
@@ -22,12 +23,19 @@ fun AppNavHost(
         composable(route = Start.route) {
             RoleChoiceScreen(
                 onClickCivilian = {
-                    navController.navigateSingleTopTo(Civilian.route)
+                    navController.navigateSingleTopTo(CivilianProfile.route)
                 },
             )
         }
-        composable(route = Civilian.route) {
-            CivilianProfileScreen()
+        composable(route = CivilianProfile.route) {
+            CivilianProfileScreen(
+                onClickSubmit = {
+                    navController.navigateSingleTopTo(CivilianRides.route)
+                }
+            )
+        }
+        composable(route = CivilianRides.route) {
+            CivilianRidesScreen()
         }
     }
 }

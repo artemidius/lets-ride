@@ -1,9 +1,9 @@
 package com.s808.data.civilian.model
 
 import com.s808.common.result.OperationResult
-import com.s808.data.civilian.repo.CivilianRepositoryImpl
+import com.s808.data.civilian.repo.profile.CivilianProfileRepositoryImpl
 import com.s808.data.database.dao.CivilianDao
-import com.s808.data.user.model.Female
+import com.s808.data.user.UserGender
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -19,11 +19,11 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-internal class CivilianRepositoryImplTest {
+internal class CivilianProfileRepositoryImplTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
     private val civilianDao: CivilianDao = mock(CivilianDao::class.java)
-    private val repo = CivilianRepositoryImpl(civilianDao)
+    private val repo = CivilianProfileRepositoryImpl(civilianDao)
 
     @Before
     fun setUp() {
@@ -56,7 +56,7 @@ internal class CivilianRepositoryImplTest {
                 icon = null,
                 hasHelmet = true,
                 pickMeUpWhereIam = true,
-                gender = Female()
+                gender = UserGender.Female
             )
         )
         verify(civilianDao, times(1)).deleteAll()

@@ -1,4 +1,4 @@
-package com.s808.civilian.profile.ui.state
+package com.s808.civilian.profile.state
 
 import android.net.Uri
 

@@ -3,8 +3,8 @@ package com.s808.data.civilian.model
 import android.net.Uri
 import android.os.Parcelable
 import com.s808.data.database.enteties.CivilianEntity
-import com.s808.data.user.model.UserGender
-import com.s808.data.user.model.getUserGender
+import com.s808.data.user.UserGender
+import com.s808.data.user.getUserGender
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

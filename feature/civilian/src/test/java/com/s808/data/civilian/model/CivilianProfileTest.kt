@@ -2,7 +2,7 @@ package com.s808.data.civilian.model
 
 import android.net.Uri
 import com.s808.data.database.enteties.CivilianEntity
-import com.s808.data.user.model.Female
+import com.s808.data.user.UserGender
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -17,7 +17,7 @@ internal class CivilianProfileTest {
             icon = Uri.parse("file://mock/icon"),
             hasHelmet = true,
             pickMeUpWhereIam = true,
-            gender = Female()
+            gender = UserGender.Female
         )
         val entity = source.toEntity()
 
@@ -45,6 +45,6 @@ internal class CivilianProfileTest {
         assert(profile.icon.toString() == "file://mock/icon")
         assert(profile.hasHelmet)
         assert(profile.pickMeUpWhereIam)
-        assert(profile.gender is Female)
+        assert(profile.gender is UserGender.Female)
     }
 }

@@ -1,7 +1,7 @@
 package com.s808.data.di
 
-import com.s808.data.civilian.repo.CivilianRepository
-import com.s808.data.civilian.repo.CivilianRepositoryImpl
+import com.s808.data.civilian.repo.profile.CivilianProfileRepository
+import com.s808.data.civilian.repo.profile.CivilianProfileRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 interface DataModule {
     @Binds
     fun bindsTopicRepository(
-        civilianRepositoryImpl: CivilianRepositoryImpl
-    ): CivilianRepository
+        civilianProfileRepositoryImpl: CivilianProfileRepositoryImpl
+    ): CivilianProfileRepository
 }
