@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.s808.civilian.rides.state.CivilianRidersViewState
 import com.s808.civilian.rides.state.toRiderItem
 import com.s808.common.result.OperationResult
-import com.s808.data.civilian.model.CivilianProfile
 import com.s808.data.civilian.repo.profile.CivilianProfileRepository
 import com.s808.data.model.geo.Location
 import com.s808.data.model.geo.Measure
@@ -26,8 +25,12 @@ class CivilianRidersViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<CivilianRidersViewState>(value = CivilianRidersViewState.Loading)
     val uiState: StateFlow<CivilianRidersViewState> = _uiState
 
+    init {
+        loadRiders()
+    }
 
     fun loadRiders() {
+        _uiState.value = CivilianRidersViewState.Loading
         viewModelScope.launch {
             val profile = (profileRepo.getCivilianProfile() as? OperationResult.Success)?.data
 
@@ -41,9 +44,8 @@ class CivilianRidersViewModel @Inject constructor(
                     pickMeUp = profile?.pickMeUpWhereIam?:true
                 )
             )
-
             when(result) {
-                is OperationResult.Error -> TODO()
+                is OperationResult.Error -> {}
                 is OperationResult.Loading -> _uiState.value = CivilianRidersViewState.Loading
                 is OperationResult.Success -> {
                     _uiState.value = CivilianRidersViewState.Success(result.data.map { it.toRiderItem() })
