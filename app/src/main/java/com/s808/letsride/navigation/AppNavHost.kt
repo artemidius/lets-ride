@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.s808.civilian.profile.screen.CivilianProfileScreen
 import com.s808.civilian.rides.screen.CivilianRidesScreen
 import com.s808.start.ui.RoleChoiceScreen
+import com.s808.start.ui.StartScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,7 +23,7 @@ fun AppNavHost(
         modifier = modifier
     ) {
         composable(route = Start.route) {
-            RoleChoiceScreen(
+            StartScreen(
                 onClickCivilian = {
                     navController.navigate(CivilianProfile.route)
                 },

@@ -10,4 +10,5 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <color name="golden">#FFC107</color>
+    <color name="soft_text">#6750A4</color>
 </resources>
