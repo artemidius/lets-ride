@@ -16,8 +16,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:data"))
 
-    implementation ("io.ktor:ktor-client-android:1.5.0")
-    implementation ("io.ktor:ktor-client-serialization:1.5.0")
+    implementation (libs.bundles.ktor)
     implementation (libs.kotlinx.serialization.json)
-    implementation ("io.ktor:ktor-client-logging-jvm:1.5.0")
+
 }

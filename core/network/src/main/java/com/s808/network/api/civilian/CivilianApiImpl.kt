@@ -13,10 +13,10 @@ internal class CivilianApiImpl @Inject constructor(
     private val client: HttpClient,
     private val factory: NetworkConfigFactory
 ) : CivilianApi {
-    override suspend fun getRiders(config: RiderRequestConfig): ApiResponse<List<RiderDTO>?> {
-        val config = factory.networkConfig
-        val baseUrl = config.baseUrl
-        val token = config.tokens[TokenType.BACKEND]?:throw IllegalStateException("No token found")
+    override suspend fun getRiders(params: RiderRequestParams): ApiResponse<List<RiderDTO>?> {
+        val networkConfig = factory.networkConfig
+        val baseUrl = networkConfig.baseUrl
+        val token = networkConfig.tokens[TokenType.BACKEND]?:throw IllegalStateException("No token found")
         return client.get("$baseUrl/civilian/riders") {
             headers {
                 append(HttpHeaders.Authorization, token)

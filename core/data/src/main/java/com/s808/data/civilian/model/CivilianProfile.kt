@@ -13,7 +13,8 @@ data class CivilianProfile(
     val icon: Uri?,
     val hasHelmet: Boolean,
     val pickMeUpWhereIam: Boolean,
-    val gender: UserGender
+    val civilianGender: UserGender,
+    val preferredRiderGenders:List<UserGender>
 ): Parcelable
 
 fun CivilianProfile.toEntity(): CivilianEntity =
@@ -23,7 +24,8 @@ fun CivilianProfile.toEntity(): CivilianEntity =
         userId = id,
         hasHelmet = hasHelmet,
         pickMeUpWhereIam = pickMeUpWhereIam,
-        gender = gender.text
+        civilianGender = civilianGender.text,
+        preferredRiderGenders = preferredRiderGenders.map { it.text }
     )
 
 fun CivilianEntity.toProfile(): CivilianProfile =
@@ -32,5 +34,6 @@ fun CivilianEntity.toProfile(): CivilianProfile =
         icon = Uri.parse(icon),
         hasHelmet = hasHelmet,
         pickMeUpWhereIam = pickMeUpWhereIam,
-        gender = gender.getUserGender()
+        civilianGender = civilianGender.getUserGender(),
+        preferredRiderGenders = preferredRiderGenders.map { it.getUserGender() }
     )

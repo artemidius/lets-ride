@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.s808.designsystem.ui.theme.SoftTextColor
 
 @Composable
-fun CheckedText(text: String, onCheckChanged: (Boolean) -> Unit = {}) {
-    val (checkedState, onStateChange) = remember { mutableStateOf(true) }
+fun CheckedText(text: String, isChecked: Boolean = false, onCheckChanged: (Boolean) -> Unit = {}) {
+    val (checkedState, onStateChange) = remember { mutableStateOf( isChecked ) }
     Row(
         Modifier
             .fillMaxWidth()

@@ -9,7 +9,7 @@ import com.s808.data.civilian.repo.profile.CivilianProfileRepository
 import com.s808.data.model.geo.Location
 import com.s808.data.model.geo.Measure
 import com.s808.data.user.UserGender
-import com.s808.network.api.civilian.RiderRequestConfig
+import com.s808.network.api.civilian.RiderRequestParams
 import com.s808.repo.riders.RidersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,9 +36,9 @@ class CivilianRidersViewModel @Inject constructor(
 
             val result = ridersRepository.getRidersList(
                 //TODO: Prepare config in a UseCase outside VM
-                RiderRequestConfig(
+                RiderRequestParams(
                     location = Location(1, Measure.KILOMETERS, 0.0, 0.0),//TODO: Get location
-                    passingerGender = profile?.gender?:UserGender.Else,
+                    passingerGender = profile?.civilianGender?:UserGender.Other,
                     riderGender = UserGender.Female,
                     helmetRequired = profile?.hasHelmet?:false,
                     pickMeUp = profile?.pickMeUpWhereIam?:true

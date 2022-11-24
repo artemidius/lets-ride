@@ -1,6 +1,5 @@
-package com.s808.civilian
+package com.s808.start.ui.civilian
 
-import com.s808.civilian.profile.vm.CivilianProfileViewModel
 import com.s808.common.result.OperationResult
 import com.s808.data.civilian.model.CivilianProfile
 import com.s808.data.civilian.repo.profile.CivilianProfileRepository
@@ -14,18 +13,19 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
+import org.mockito.Mockito
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 
 @ExperimentalCoroutinesApi
-internal class CivilianProfileViewModelTest {
+internal class CivilianScreenViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
-    private lateinit var civilianProfileViewModel: CivilianProfileViewModel
-    private val civilianProfileRepository: CivilianProfileRepository = mock(
-        CivilianProfileRepository::class.java)
+    private lateinit var civilianProfileViewModel: CivilianScreenViewModel
+    private val civilianProfileRepository: CivilianProfileRepository = Mockito.mock(
+        CivilianProfileRepository::class.java
+    )
 
     @Before
     fun setUp() {
@@ -44,10 +44,11 @@ internal class CivilianProfileViewModelTest {
             icon = null,
             hasHelmet = false,
             pickMeUpWhereIam = false,
-            gender = UserGender.Female,
+            civilianGender = UserGender.Female,
+            emptyList()
         )
         whenever(civilianProfileRepository.getCivilianProfile()).thenReturn(OperationResult.Success(currentProfile))
-        civilianProfileViewModel = CivilianProfileViewModel(civilianProfileRepository)
+        civilianProfileViewModel = CivilianScreenViewModel(civilianProfileRepository)
         civilianProfileViewModel.hasHelmet(true)
         verify(civilianProfileRepository).persistCivilianProfile(currentProfile.copy(hasHelmet = true))
     }
@@ -59,10 +60,11 @@ internal class CivilianProfileViewModelTest {
             icon = null,
             hasHelmet = false,
             pickMeUpWhereIam = false,
-            gender = UserGender.Female,
+            civilianGender = UserGender.Female,
+            emptyList()
         )
         whenever(civilianProfileRepository.getCivilianProfile()).thenReturn(OperationResult.Success(currentProfile))
-        civilianProfileViewModel = CivilianProfileViewModel(civilianProfileRepository)
+        civilianProfileViewModel = CivilianScreenViewModel(civilianProfileRepository)
         civilianProfileViewModel.pickMeUp(true)
         verify(civilianProfileRepository).persistCivilianProfile(currentProfile.copy(pickMeUpWhereIam = true))
     }

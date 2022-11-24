@@ -3,4 +3,9 @@
     <string name="app_name">Let\'s Ride</string>
     <string name="title_activity_mock">MockActivity</string>
     <string name="km">km</string>
+    <string-array
+        name="main_tabs">
+        <item>RIDER</item>
+        <item>Civilian</item>
+    </string-array>
 </resources>

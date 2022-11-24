@@ -56,7 +56,8 @@ internal class CivilianProfileRepositoryImplTest {
                 icon = null,
                 hasHelmet = true,
                 pickMeUpWhereIam = true,
-                gender = UserGender.Female
+                civilianGender = UserGender.Female,
+                preferredRiderGenders = emptyList()
             )
         )
         verify(civilianDao, times(1)).deleteAll()

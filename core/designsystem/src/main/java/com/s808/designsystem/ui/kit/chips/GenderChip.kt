@@ -22,8 +22,8 @@ import com.s808.designsystem.ui.theme.Grey100
 import com.s808.letsride.core.designsystem.R
 
 @Composable
-fun GenderChip(chipText: String, onChipChange: (Boolean) -> Unit = {}) {
-    val (checkedState, onStateChange) = remember { mutableStateOf(true) }
+fun GenderChip(isActive: Boolean = true, chipText: String, onChipChange: (Boolean) -> Unit = {}) {
+    val (checkedState, onStateChange) = remember { mutableStateOf(isActive) }
     Chip(
         onClick = {
             onChipChange(!checkedState)

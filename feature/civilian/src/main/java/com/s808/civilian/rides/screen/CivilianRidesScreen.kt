@@ -30,6 +30,7 @@ import com.s808.civilian.rides.state.RiderItem
 import com.s808.civilian.rides.vm.CivilianRidersViewModel
 import com.s808.letsride.core.designsystem.R
 
+@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 @ExperimentalMaterial3Api
 @Composable
 fun CivilianRidesScreen(
@@ -68,7 +69,7 @@ fun CivilianRidesScreen(
         },
         content = { innerPadding ->
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().padding(innerPadding),
                 verticalArrangement = Arrangement.Top,
             ) {
                 val state: CivilianRidersViewState by viewModel.uiState.collectAsState()

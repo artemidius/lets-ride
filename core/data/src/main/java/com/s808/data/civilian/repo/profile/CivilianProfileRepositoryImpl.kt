@@ -21,25 +21,28 @@ class CivilianProfileRepositoryImpl @Inject constructor(
             icon = null,
             hasHelmet = false,
             pickMeUpWhereIam = false,
-            gender = UserGender.Else
+            civilianGender = UserGender.Other,
+            preferredRiderGenders = listOf(UserGender.Female, UserGender.Male, UserGender.Other)
         )
     }
 
-    override suspend fun getCivilianProfile(): OperationResult<CivilianProfile> = withContext(Dispatchers.IO) {
-        try {
-            val civiliansList = civilianDao.getAll()
-            if (civiliansList.isEmpty()) {
-                civilianDao.insert(initialCivilianProfile.toEntity())
-                return@withContext OperationResult.Success(initialCivilianProfile)
+    override suspend fun getCivilianProfile(): OperationResult<CivilianProfile> =
+        withContext(Dispatchers.IO) {
+            try {
+                val civiliansList = civilianDao.getAll()
+                if (civiliansList.isEmpty()) {
+                    civilianDao.insert(initialCivilianProfile.toEntity())
+                    return@withContext OperationResult.Success(initialCivilianProfile)
+                }
+                OperationResult.Success(civiliansList.first().toProfile())
+            } catch (e: Throwable) {
+                return@withContext OperationResult.Error(e)
             }
-            OperationResult.Success(civiliansList.first().toProfile())
-        } catch (e: Throwable) {
-            return@withContext OperationResult.Error(e)
         }
-    }
 
-    override suspend fun persistCivilianProfile(civilianProfile: CivilianProfile) = withContext(Dispatchers.IO) {
-        civilianDao.deleteAll()
-        civilianDao.insert(civilianProfile.toEntity())
-    }
+    override suspend fun persistCivilianProfile(civilianProfile: CivilianProfile) =
+        withContext(Dispatchers.IO) {
+            civilianDao.deleteAll()
+            civilianDao.insert(civilianProfile.toEntity())
+        }
 }

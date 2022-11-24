@@ -17,7 +17,8 @@ internal class CivilianProfileTest {
             icon = Uri.parse("file://mock/icon"),
             hasHelmet = true,
             pickMeUpWhereIam = true,
-            gender = UserGender.Female
+            civilianGender = UserGender.Female,
+            preferredRiderGenders = emptyList()
         )
         val entity = source.toEntity()
 
@@ -25,7 +26,7 @@ internal class CivilianProfileTest {
         assert(entity.icon == "file://mock/icon")
         assert(entity.hasHelmet == source.hasHelmet)
         assert(entity.pickMeUpWhereIam == source.pickMeUpWhereIam)
-        assert(entity.gender == source.gender.text)
+        assert(entity.civilianGender == source.civilianGender.text)
     }
 
     @Test
@@ -36,7 +37,8 @@ internal class CivilianProfileTest {
             userId = "uuid-uuid-uuid-uuid",
             hasHelmet = true,
             pickMeUpWhereIam = true,
-            gender = "female"
+            civilianGender = "Lady",
+            preferredRiderGenders = emptyList()
         )
 
         val profile = entity.toProfile()
@@ -45,6 +47,6 @@ internal class CivilianProfileTest {
         assert(profile.icon.toString() == "file://mock/icon")
         assert(profile.hasHelmet)
         assert(profile.pickMeUpWhereIam)
-        assert(profile.gender is UserGender.Female)
+        assert(profile.civilianGender is UserGender.Female)
     }
 }

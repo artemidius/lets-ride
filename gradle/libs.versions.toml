@@ -10,6 +10,7 @@ coil                    = "2.2.2"
 compose                 = "1.2.1"
 composeMaterial3        = "1.0.0-beta03"
 constraintlayout        = "2.1.4"
+datastore               = "1.0.0"
 hilt                    = "2.42"
 hiltExt                 = "1.0.0"
 hiltNavigationCompose   = "1.0.0"
@@ -18,6 +19,7 @@ junit_ext               = "1.1.3"
 ksp                     = "1.7.10-1.0.6"
 kotlin                  = "1.7.10"
 kotlinxCoroutines       = "1.6.4"
+ktor                    = "1.5.0"
 ktx_core                = "1.9.0"
 material                = "1.6.1"
 mockito                 = "4.0.0"
@@ -30,6 +32,7 @@ android-desugarJdkLibs              = { group = "com.android.tools", name = "des
 android-gradlePlugin                = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 appcompat                           = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-activity-compose           = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-datastore-prefs            = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 androidx-lifecycle-runtimeCompose   = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose         = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
@@ -54,6 +57,9 @@ kotlin-gradlePlugin                 = { group = "org.jetbrains.kotlin", name = "
 kotlinx-coroutines-android          = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test             = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-json          = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationJson" }
+ktor-android                        = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-logging                        = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
+ktor-serialization                  = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
 ktx_core                            = { module = "androidx.core:core-ktx", version.ref = "ktx_core" }
 material                            = { module = "com.google.android.material:material", version.ref = "material" }
 mockito-core                        = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
@@ -74,6 +80,11 @@ compose = [
     "compose.material3.windowSizeClass",
     "compose.tooling",
     "compose.ui",
+]
+ktor = [
+    "ktor.android",
+    "ktor.logging",
+    "ktor.serialization",
 ]
 mockito = [
     "mockito-core",

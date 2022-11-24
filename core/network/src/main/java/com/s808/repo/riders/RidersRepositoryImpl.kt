@@ -3,14 +3,14 @@ package com.s808.repo.riders
 import com.s808.common.result.OperationResult
 import com.s808.model.rider.RiderDTO
 import com.s808.network.api.civilian.CivilianApi
-import com.s808.network.api.civilian.RiderRequestConfig
+import com.s808.network.api.civilian.RiderRequestParams
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RidersRepositoryImpl @Inject constructor(private val civilianApi: CivilianApi) :
     RidersRepository {
-    override suspend fun getRidersList(config: RiderRequestConfig): OperationResult<List<RiderDTO>> =
+    override suspend fun getRidersList(config: RiderRequestParams): OperationResult<List<RiderDTO>> =
         withContext(Dispatchers.IO) {
             try {
                 val resp = civilianApi.getRiders(config)
