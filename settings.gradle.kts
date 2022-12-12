@@ -17,11 +17,14 @@ dependencyResolutionManagement {
 }
 
 include (":app")
+
 include(":core")
 include(":core:common")
 include(":core:data")
 include(":core:designsystem")
 include(":core:navigation")
+include(":core:network")
+
 include(":feature")
 include(":feature:civilian")
 include(":feature:start")
