@@ -1,14 +1,15 @@
 package com.s808.letsride.navigation
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.s808.civilian.profile.screen.CivilianProfileScreen
-import com.s808.start.ui.RoleChoiceScreen
+import com.s808.civilian.rides.screen.CivilianRidesScreen
+import com.s808.start.ui.host.StartScreen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavHost(
     navController: NavHostController,
@@ -20,32 +21,21 @@ fun AppNavHost(
         modifier = modifier
     ) {
         composable(route = Start.route) {
-            RoleChoiceScreen(
-                onClickCivilian = {
-                    navController.navigateSingleTopTo(Civilian.route)
+            StartScreen(
+                onClickCivilianFindRiders = {
+                    navController.navigate(CivilianRides.route)
                 },
             )
         }
-        composable(route = Civilian.route) {
-            CivilianProfileScreen()
+
+        composable(route = CivilianRides.route) {
+            CivilianRidesScreen(
+                onClickBack = { navController.popBackStack() },
+                onClickFilter = { println("CLICK-FILTER") },
+                onClickItem = {
+                    println("CLICK-ITEM: $it")
+                }
+            )
         }
     }
 }
-
-fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route) {
-        // Pop up to the start destination of the graph to
-        // avoid building up a large stack of destinations
-        // on the back stack as users select items
-        popUpTo(
-            this@navigateSingleTopTo.graph.findStartDestination().id
-        ) {
-            saveState = true
-        }
-        // Avoid multiple copies of the same destination when
-        // reselecting the same item
-        launchSingleTop = true
-        // Restore state when reselecting a previously selected item
-        restoreState = true
-    }
-

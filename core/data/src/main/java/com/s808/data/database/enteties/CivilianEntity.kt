@@ -11,5 +11,6 @@ data class CivilianEntity(
     @ColumnInfo(name = "user_id") val userId: String,
     @ColumnInfo(name = "has_helmet") val hasHelmet: Boolean,
     @ColumnInfo(name = "pick_up") val pickMeUpWhereIam: Boolean,
-    @ColumnInfo(name = "gender") val gender: String
+    @ColumnInfo(name = "civilian_gender") val civilianGender: String,
+    @ColumnInfo(name = "preferred_rider_genders") val preferredRiderGenders: List<String>,
 )

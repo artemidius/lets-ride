@@ -2,9 +2,35 @@ package com.s808.designsystem.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import com.s808.letsride.core.designsystem.R
+
+@Composable
+fun LetsRideTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colors = if (darkTheme) {
+        DarkColorPalette
+    } else {
+        LightColorPalette
+    }
+
+    MaterialTheme(
+        colors = colors,
+        typography = LetsrideTypography,
+        shapes = Shapes,
+        content = content
+    )
+}
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -27,18 +53,15 @@ private val LightColorPalette = lightColors(
     */
 )
 
-@Composable
-fun LetsRideTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
+val LetsrideTypography = Typography(
+    h1 = TextStyle(
+        fontWeight = FontWeight.W300,
+        fontSize = 96.sp
+    ),
+    body1 = TextStyle(
+        fontWeight = FontWeight.W600,
+        fontSize = 16.sp
     )
-}
+)
+
+
